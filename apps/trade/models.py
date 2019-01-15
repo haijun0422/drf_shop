@@ -20,6 +20,7 @@ class ShoppingCart(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
+        db_table = 's_shopping_cart'
         verbose_name = '购物车'
         verbose_name_plural = verbose_name
         unique_together = ("user", "goods")
@@ -56,6 +57,7 @@ class OrderInfo(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
+        db_table = 's_ordings'
         verbose_name = u"订单"
         verbose_name_plural = verbose_name
 
@@ -74,6 +76,7 @@ class OrderGoods(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
+        db_table = 's_order_goods'
         verbose_name = "订单商品"
         verbose_name_plural = verbose_name
 

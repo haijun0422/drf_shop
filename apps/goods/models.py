@@ -26,6 +26,7 @@ class GoodsCategory(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
+        db_table='s_category'
         verbose_name = "商品类别"
         verbose_name_plural = verbose_name
 
@@ -44,9 +45,9 @@ class GoodsCategoryBrand(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
+        db_table='s_brand'
         verbose_name = "品牌"
         verbose_name_plural = verbose_name
-        db_table = "goods_goodsbrand"
 
     def __str__(self):
         return self.name
@@ -75,6 +76,7 @@ class Goods(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
+        db_table = 's_goods'
         verbose_name = '商品'
         verbose_name_plural = verbose_name
 
@@ -87,6 +89,7 @@ class IndexAd(models.Model):
     goods =models.ForeignKey(Goods, related_name='goods')
 
     class Meta:
+        db_table = 's_index_ad'
         verbose_name = '首页商品类别广告'
         verbose_name_plural = verbose_name
 
@@ -103,6 +106,7 @@ class GoodsImage(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
+        db_table = 's_goods_image'
         verbose_name = '商品图片'
         verbose_name_plural = verbose_name
 
@@ -120,6 +124,7 @@ class Banner(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
+        db_table = 's_banner'
         verbose_name = '轮播商品'
         verbose_name_plural = verbose_name
 
@@ -136,6 +141,7 @@ class HotSearchWords(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
+        db_table = 's_host_search_words'
         verbose_name = '热搜词'
         verbose_name_plural = verbose_name
 

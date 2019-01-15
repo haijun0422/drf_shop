@@ -16,6 +16,7 @@ class UserFav(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
+        db_table = 's_user_fav'
         verbose_name = '用户收藏'
         verbose_name_plural = verbose_name
         unique_together = ("user", "goods")
@@ -44,6 +45,7 @@ class UserLeavingMessage(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
+        db_table = 's_messages'
         verbose_name = "用户留言"
         verbose_name_plural = verbose_name
 
@@ -65,6 +67,7 @@ class UserAddress(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
+        db_table = 's_address'
         verbose_name = "收货地址"
         verbose_name_plural = verbose_name
 

@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     'trade.apps.TradeConfig',
     'user_operation.apps.UserOperationConfig',
     'DjangoUeditor',
-    # 'rest_framework',
+    'xadmin',
+    'crispy_forms',
+    'rest_framework',
+    'rest_framework.authtoken'
 
 ]
 AUTH_USER_MODEL = 'users.UserProfile'
@@ -133,3 +136,19 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# REST_FRAMEWORK = {
+#     # 'DEFAULT_AUTHENTICATION_CLASSES': (
+#     #     'rest_framework.authentication.BasicAuthentication',
+#     #     'rest_framework.authentication.SessionAuthentication',
+#     # ),
+#     "DEFAULT_AUTHENTICATION_CLASSES": []
+#     # 'DEFAULT_THROTTLE_CLASSES': (
+#     #     'rest_framework.throttling.AnonRateThrottle',
+#     #     'rest_framework.throttling.UserRateThrottle'
+#     # ),
+#     # 'DEFAULT_THROTTLE_RATES': {
+#     #     'anon': '2/minute',
+#     #     'user': '3/minute'
+#     # }
+# }

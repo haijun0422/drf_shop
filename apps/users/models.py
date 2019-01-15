@@ -18,6 +18,7 @@ class UserProfile(AbstractUser):
     email = models.EmailField(max_length=100, null=True, blank=True, verbose_name="邮箱")
 
     class Meta:
+        db_table = 's_users'
         verbose_name = "用户"
         verbose_name_plural = verbose_name
 
@@ -34,6 +35,7 @@ class VerifyCode(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
+        db_table = 's_verifycode'
         verbose_name = "短信验证码"
         verbose_name_plural = verbose_name
 

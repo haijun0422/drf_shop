@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
+import xadmin
+from goods.views import GoodsView
+
 
 urlpatterns = [
-    url('admin/', admin.site.urls),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'editor/', include('DjangoUeditor.urls'))
+    url('xadmin/', xadmin.site.urls),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')), # 登录rest_framework
+    url(r'editor/', include('DjangoUeditor.urls')),
+    url(r'^goods/', GoodsView.as_view()),
 ]
