@@ -170,7 +170,14 @@ CACHES = {
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
-    }
+    },
+    "smscodes": {  # 短信
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
 }
 # JWT 登录认证
 import datetime
@@ -185,3 +192,5 @@ DEFAULT_FILE_STORAGE = 'utils.fastdfs.storage.FDFSStorage'
 FDFS_CLIENT_CONF = 'apps/utils/fastdfs/client.conf'
 # 自定义fastdfs储存服务器上的nginx地址和IP端口
 FDFS_BASE_URL = 'http://192.168.211.130:8888/'
+# 手机正则
+REGEX_MOBILE = '^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$'

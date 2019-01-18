@@ -8,7 +8,8 @@
 ### 方案
 - 前后端分离　python3.5 + django + restfrmework + vue
 - redis 缓存
-- fastDFS 储存
+- fastDFS ＋ nginx 图片储存
 - xadmin 后台管理
 - 云通讯短信验证
 - celery 异步发送短信
+- JWT 实现状态保持
