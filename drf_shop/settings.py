@@ -156,9 +156,32 @@ REST_FRAMEWORK = {
     ),
 
 }
-
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/0",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+    "session": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+# JWT 登录认证
 import datetime
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),  # 过期时间
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }
+
+# 自定义Django的自定义文件存储类
+DEFAULT_FILE_STORAGE = 'utils.fastdfs.storage.FDFSStorage'
+# 自定义fdfs使用的client.conf文件路径
+FDFS_CLIENT_CONF = 'apps/utils/fastdfs/client.conf'
+# 自定义fastdfs储存服务器上的nginx地址和IP端口
+FDFS_BASE_URL = 'http://192.168.211.130:8888/'
