@@ -11,3 +11,4 @@
 - fastDFS 储存
 - xadmin 后台管理
 - 云通讯短信验证
+- celery 异步发送短信

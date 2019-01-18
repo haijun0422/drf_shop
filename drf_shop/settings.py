@@ -47,12 +47,19 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'rest_framework',
-    'rest_framework.authtoken'
+    'django_filters',  # 过滤
+    'corsheaders',  # 跨域
+    'rest_framework.authtoken', # token
 
 ]
 AUTH_USER_MODEL = 'users.UserProfile'
+AUTHENTICATION_BACKENDS = (  # 多方式登录
+    'users.views.CustomBackend',
+)
+CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -135,20 +142,23 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# REST_FRAMEWORK = {
-#     # 'DEFAULT_AUTHENTICATION_CLASSES': (
-#     #     'rest_framework.authentication.BasicAuthentication',
-#     #     'rest_framework.authentication.SessionAuthentication',
-#     # ),
-#     "DEFAULT_AUTHENTICATION_CLASSES": []
-#     # 'DEFAULT_THROTTLE_CLASSES': (
-#     #     'rest_framework.throttling.AnonRateThrottle',
-#     #     'rest_framework.throttling.UserRateThrottle'
-#     # ),
-#     # 'DEFAULT_THROTTLE_RATES': {
-#     #     'anon': '2/minute',
-#     #     'user': '3/minute'
-#     # }
-# }
+REST_FRAMEWORK = {
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    # 'PAGE_SIZE': 10,  # 分页配置  可以在sit-packages/rest_framework/settings.py 查看
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+
+}
+
+import datetime
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),  # 过期时间
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+}

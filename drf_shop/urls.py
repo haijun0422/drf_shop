@@ -16,12 +16,25 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url, include
 import xadmin
-from goods.views import GoodsView
+from django.conf import settings
+from django.views.static import serve
+from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken import views
+from rest_framework_jwt.views import obtain_jwt_token
+from goods.views import GoodsListViewSet, CategoryViewSet
 
+router = DefaultRouter()
+router.register(r'^goods', GoodsListViewSet, base_name='goods')
+router.register(r'^categorys', CategoryViewSet, base_name='categorys')
 
 urlpatterns = [
     url('xadmin/', xadmin.site.urls),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')), # 登录rest_framework
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),  # 登录rest_framework
+    url(r'^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT}),
     url(r'editor/', include('DjangoUeditor.urls')),
-    url(r'^goods/', GoodsView.as_view()),
+
+    # url(r'^goods/', GoodsView.as_view()),
+    url('', include(router.urls)),
+    url(r'^api-token-auth/', views.obtain_auth_token),  # drf自带的token认证模式
+    url(r'^login/', obtain_jwt_token),  # JWT 用户认证接口
 ]
