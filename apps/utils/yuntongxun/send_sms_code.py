@@ -5,7 +5,7 @@
 # @File    : send_sms_code.py
 # @Software: PyCharm
 
-from utils.yuntongxun.CCPRestSDK import REST
+from apps.utils.yuntongxun.CCPRestSDK import REST
 # 主帐号
 accountSid = '8a216da8679811d10167982347180008'
 

@@ -9,7 +9,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from random import choice
 from apps.utils.yuntongxun.send_sms_code import sendTemplateSMS
-from .serializers import SmsSerializer
+from .serializers import SmsSerializer, RegisterSerializers
 from celery_tasks.tasks import send_sms_code
 
 User = get_user_model()
@@ -53,16 +53,16 @@ class SmsCodeViewset(CreateModelMixin, viewsets.GenericViewSet):
         serializer.is_valid(raise_exception=True)
         mobile = serializer.validated_data['mobile']
         con = get_redis_connection('smscodes')
-        flag = con.get('smscodes_flag_%s' % mobile)
+        flag = con.get(mobile)
         if flag:
             return Response({"error": "请求过于频繁"})
         code = str(self.generate_code())
         # 生成管道对像
         pl = con.pipeline()
         # 保存短信验证码到redis中
-        pl.setex('smscodes_%s' % code, 300, code)
+        pl.setex(code, 300, code)  # 有效期５分钟
         # 设置请求时效标志
-        pl.setex('smscodes_flag_%s' % mobile, 60, 1)
+        pl.setex(mobile, 300, 1)  # 有效期５分钟
         # 执行管道(连接缓存，存入数据)
         pl.execute()
         # 调用云通讯发送短信
@@ -70,3 +70,9 @@ class SmsCodeViewset(CreateModelMixin, viewsets.GenericViewSet):
         # 使用celery异步发送短信
         send_sms_code.delay(mobile, code, 1)
         return Response({"message": "ok"})
+
+
+class UserRegisterViewSet(CreateModelMixin, viewsets.GenericViewSet):
+    serializer_class = RegisterSerializers
+    queryset = User.objects.all()
+
