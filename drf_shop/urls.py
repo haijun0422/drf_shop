@@ -23,12 +23,14 @@ from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
 from goods.views import GoodsListViewSet, CategoryViewSet
 from users.views import SmsCodeViewset, UserRegisterViewSet
+from user_operation.views import UserFavViewSet
 
 router = DefaultRouter()
-router.register(r'^goods', GoodsListViewSet, base_name='goods')
-router.register(r'^categorys', CategoryViewSet, base_name='categorys')
-router.register(r'code', SmsCodeViewset, base_name='code')
-router.register(r'users', UserRegisterViewSet, base_name='users')
+router.register(r'^goods', GoodsListViewSet, base_name='goods')  # 商品列表
+router.register(r'^categorys', CategoryViewSet, base_name='categorys')  # 商品分类
+router.register(r'code', SmsCodeViewset, base_name='code')  # 短信验证码
+router.register(r'users', UserRegisterViewSet, base_name='users')  # 用户注册
+router.register(r'userfav', UserFavViewSet, base_name='userfav') # 用户收藏
 
 
 urlpatterns = [
