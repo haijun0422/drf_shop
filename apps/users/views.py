@@ -9,10 +9,15 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework_jwt.serializers import jwt_payload_handler, jwt_encode_handler
 from rest_framework import status
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+from rest_framework.authentication import SessionAuthentication
+
 from random import choice
-from apps.utils.yuntongxun.send_sms_code import sendTemplateSMS
-from .serializers import SmsSerializer, RegisterSerializers
+from .serializers import SmsSerializer, RegisterSerializers, UserDetailSerializers
 from celery_tasks.tasks import send_sms_code
+from utils.permission import IsOwnerOrReadOnly
+
+# from apps.utils.yuntongxun.send_sms_code import sendTemplateSMS
 
 User = get_user_model()
 
@@ -74,9 +79,18 @@ class SmsCodeViewset(CreateModelMixin, viewsets.GenericViewSet):
         return Response({"message": "ok"})
 
 
-class UserRegisterViewSet(CreateModelMixin, viewsets.GenericViewSet):
+class UserRegisterViewSet(CreateModelMixin, RetrieveModelMixin, viewsets.GenericViewSet):
     serializer_class = RegisterSerializers
     queryset = User.objects.all()
+    permission_classes = (JSONWebTokenAuthentication, SessionAuthentication)
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return UserDetailSerializers
+        elif self.action == 'create':
+            return RegisterSerializers
+        else:
+            return UserDetailSerializers
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -91,7 +105,18 @@ class UserRegisterViewSet(CreateModelMixin, viewsets.GenericViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
+    def get_object(self):
+        '''重写,　返回当前用户'''
+        return self.request.user
+
     def perform_create(self, serializer):
         return serializer.save()
 
-
+    def get_permissions(self):
+        '''重写'''
+        if self.action == 'retrieve':
+            return [IsOwnerOrReadOnly()]
+        elif self.action == 'create':
+            return []
+        else:
+            return []
