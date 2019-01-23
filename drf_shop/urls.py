@@ -27,8 +27,9 @@ from users.views import SmsCodeViewset, UserRegisterViewSet
 router = DefaultRouter()
 router.register(r'^goods', GoodsListViewSet, base_name='goods')
 router.register(r'^categorys', CategoryViewSet, base_name='categorys')
-router.register(r'code',SmsCodeViewset,base_name='code')
-router.register(r'user',UserRegisterViewSet,base_name='user')
+router.register(r'code', SmsCodeViewset, base_name='code')
+router.register(r'users', UserRegisterViewSet, base_name='users')
+
 
 urlpatterns = [
     url('xadmin/', xadmin.site.urls),

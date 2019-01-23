@@ -186,11 +186,11 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }
 
-# 自定义Django的自定义文件存储类
-DEFAULT_FILE_STORAGE = 'utils.fastdfs.storage.FDFSStorage'
-# 自定义fdfs使用的client.conf文件路径
-FDFS_CLIENT_CONF = 'apps/utils/fastdfs/client.conf'
-# 自定义fastdfs储存服务器上的nginx地址和IP端口
-FDFS_BASE_URL = 'http://192.168.211.130:8888/'
+# # 自定义Django的自定义文件存储类
+# DEFAULT_FILE_STORAGE = 'utils.fastdfs.storage.FDFSStorage'
+# # 自定义fdfs使用的client.conf文件路径
+# FDFS_CLIENT_CONF = 'apps/utils/fastdfs/client.conf'
+# # 自定义fastdfs储存服务器上的nginx地址和IP端口
+# FDFS_BASE_URL = 'http://192.168.211.130:8888/'
 # 手机正则
 REGEX_MOBILE = '^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$'

@@ -4,9 +4,11 @@ from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django_redis import get_redis_connection
 
-from rest_framework.mixins import CreateModelMixin
+from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework_jwt.serializers import jwt_payload_handler, jwt_encode_handler
+from rest_framework import status
 from random import choice
 from apps.utils.yuntongxun.send_sms_code import sendTemplateSMS
 from .serializers import SmsSerializer, RegisterSerializers
@@ -60,9 +62,9 @@ class SmsCodeViewset(CreateModelMixin, viewsets.GenericViewSet):
         # 生成管道对像
         pl = con.pipeline()
         # 保存短信验证码到redis中
-        pl.setex(code, 300, code)  # 有效期５分钟
+        pl.setex(code, 3000, code)  # 有效期５分钟
         # 设置请求时效标志
-        pl.setex(mobile, 300, 1)  # 有效期５分钟
+        pl.setex(mobile, 3000, 1)  # 有效期５分钟
         # 执行管道(连接缓存，存入数据)
         pl.execute()
         # 调用云通讯发送短信
@@ -75,4 +77,21 @@ class SmsCodeViewset(CreateModelMixin, viewsets.GenericViewSet):
 class UserRegisterViewSet(CreateModelMixin, viewsets.GenericViewSet):
     serializer_class = RegisterSerializers
     queryset = User.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = self.perform_create(serializer)
+
+        re_dict = serializer.data
+        payload = jwt_payload_handler(user)
+        re_dict["token"] = jwt_encode_handler(payload)  # 注册后自动登录
+        re_dict["name"] = user.name if user.name else user.username
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def perform_create(self, serializer):
+        return serializer.save()
+
 

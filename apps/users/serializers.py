@@ -47,32 +47,33 @@ class RegisterSerializers(serializers.ModelSerializer):
 
     password = serializers.CharField(style={'input_type': 'password'}, help_text="密码", label="密码", write_only=True)
 
+    class Meta:
+        model = User
+        fields = ['username', 'code', 'mobile', 'password']
+
     def validate(self, attrs):
         # 短信验证
         # 1、获取reids中真实短信
         conn = get_redis_connection('smscodes')
-        rel_sms_mobile = conn.get(attrs['mobile'])
-        rel_sms_code = conn.get(attrs['code'])
+        # rel_sms_mobile = conn.get("%s" % attrs['mobile'])
+        rel_sms_code = conn.get("%s" % attrs['code'])
+        # print(rel_sms_mobile)
         # 2、 判断验证码是否存在
-        if not rel_sms_mobile:
-            raise serializers.ValidationError('验证码不存在')
+        # if not rel_sms_mobile:
+        #     raise serializers.ValidationError('验证码不存在')
         # 3、判断短信是否超过有效期
         if not rel_sms_code:
             raise serializers.ValidationError('短信验证码失效')
         # 4、比对用户输入的短信和redis中真实短信
         if attrs['code'] != rel_sms_code.decode():
             raise serializers.ValidationError('短信验证不一致')
-        # del attrs['code']
+
         return attrs
 
-    def create(self, attrs):
-        # 1、删除验证后的无用数据
-        del attrs['code']
-        # 2、使用模型类保存
-        user = User.objects.create_user(**attrs)
+    def create(self, validated_data):
+        # 删除验证后的无验证码
+        del validated_data['code']
+        # 使用模型类保存
+        validated_data['mobile'] = validated_data['username']
+        user = User.objects.create_user(**validated_data)
         return user
-
-    class Meta:
-        model = User
-        fields = ['username', 'code', 'mobile', 'password']
-
