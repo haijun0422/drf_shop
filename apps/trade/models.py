@@ -13,11 +13,11 @@ class ShoppingCart(models.Model):
     """
     购物车
     """
-    user = models.ForeignKey(User, verbose_name=u"用户")
-    goods = models.ForeignKey(Goods, verbose_name=u"商品")
-    nums = models.IntegerField(default=0, verbose_name="购买数量")
+    user = models.ForeignKey(User, verbose_name=u"用户", help_text='用户')
+    goods = models.ForeignKey(Goods, verbose_name=u"商品", help_text='商品')
+    nums = models.IntegerField(default=0, verbose_name="购买数量", help_text='商品数量')
 
-    add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
+    add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间", help_text='添加时间')
 
     class Meta:
         db_table = 's_shopping_cart'

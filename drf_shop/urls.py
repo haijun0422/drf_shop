@@ -27,6 +27,7 @@ from rest_framework.documentation import include_docs_urls
 from goods.views import GoodsListViewSet, CategoryViewSet
 from users.views import SmsCodeViewset, UserRegisterViewSet
 from user_operation.views import UserFavViewSet, LeavingMessageViewSet, AddressViewSet
+from trade.views import ShoppingCartViewSet
 
 router = DefaultRouter()
 router.register(r'^goods', GoodsListViewSet, base_name='goods')  # 商品列表
@@ -36,6 +37,7 @@ router.register(r'users', UserRegisterViewSet, base_name='users')  # 用户注�
 router.register(r'userfavs', UserFavViewSet, base_name='userfavs')  # 用户收藏
 router.register(r'messages', LeavingMessageViewSet, base_name='messages')  # 用户留言
 router.register(r'address', AddressViewSet, base_name='address')  # 收货地址
+router.register(r'shopcarts', ShoppingCartViewSet, base_name='shopcarts')  # 收货地址
 
 urlpatterns = [
     url('xadmin/', xadmin.site.urls),
