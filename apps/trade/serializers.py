@@ -9,6 +9,15 @@ from rest_framework import serializers
 
 from .models import ShoppingCart
 from goods.models import Goods
+from goods.serializers import GoodSerializers
+
+
+class ShoppingCartDetailSerializer(serializers.ModelSerializer):
+    goods = GoodSerializers()
+
+    class Meta:
+        model = ShoppingCart
+        fields = ('id', 'goods', 'nums')
 
 
 class ShoppingCartSerializer(serializers.Serializer):
@@ -33,3 +42,8 @@ class ShoppingCartSerializer(serializers.Serializer):
         else:
             existed = ShoppingCart.objects.create(**validated_data)
         return existed
+
+    def update(self, instance, validated_data):
+        instance.nums = validated_data['nums']
+        instance.save()
+        return instance

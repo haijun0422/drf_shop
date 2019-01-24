@@ -463,9 +463,8 @@
       <change beforePath="$PROJECT_DIR$/../django_allauth/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../django_allauth/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../django_allauth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../django_allauth/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../django_allauth/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../django_allauth/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/trade/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/trade/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/trade/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/trade/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/trade/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/trade/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drf_shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/drf_shop/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../git_test" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../mall/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../mall/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../mall/apps/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mall/apps/__init__.py" afterDir="false" />
@@ -1152,7 +1151,7 @@
         <counts>
           <entry key="conf" value="2" />
           <entry key="md" value="12" />
-          <entry key="py" value="186" />
+          <entry key="py" value="192" />
           <entry key="txt" value="3" />
         </counts>
       </usages-collector>
@@ -1160,14 +1159,14 @@
         <counts>
           <entry key="Markdown" value="12" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Python" value="186" />
+          <entry key="Python" value="192" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="2" />
           <entry key="md" value="1913" />
-          <entry key="py" value="9687" />
+          <entry key="py" value="9921" />
           <entry key="txt" value="14" />
         </counts>
       </usages-collector>
@@ -1175,7 +1174,7 @@
         <counts>
           <entry key="Markdown" value="1886" />
           <entry key="PLAIN_TEXT" value="16" />
-          <entry key="Python" value="9714" />
+          <entry key="Python" value="9948" />
         </counts>
       </usages-collector>
     </session>
@@ -1206,27 +1205,55 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/trade/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="16" column="45" lean-forward="true" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+            <state relative-caret-position="286">
+              <caret line="22" column="16" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <marker date="1548315114147" expanded="true" signature="471:472" ph="..." />
+                <marker date="1548318871421" expanded="true" signature="501:502" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/trade/serializers.py">
+        <entry file="file://$PROJECT_DIR$/apps/user_operation/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="23" column="37" lean-forward="true" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
+            <state relative-caret-position="418">
+              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+                <marker date="1548312688625" expanded="true" signature="722:1511" ph="..." />
+                <marker date="1548312688625" expanded="true" signature="1668:1673" ph="..." />
+                <marker date="1548312688625" expanded="true" signature="2133:2138" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/user_operation/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="355">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
               <folding>
                 <element signature="e#152#190#0" expanded="true" />
-                <marker date="1548317983977" expanded="true" signature="311:316" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apps/trade/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+              <folding>
+                <element signature="e#152#190#0" expanded="true" />
+                <marker date="1548319850548" expanded="true" signature="398:488" ph="..." />
+                <marker date="1548319850548" expanded="true" signature="541:546" ph="..." />
               </folding>
             </state>
           </provider>
@@ -1308,9 +1335,9 @@
         <option value="$PROJECT_DIR$/apps/user_operation/models.py" />
         <option value="$PROJECT_DIR$/apps/user_operation/views.py" />
         <option value="$PROJECT_DIR$/apps/user_operation/serializers.py" />
-        <option value="$PROJECT_DIR$/apps/trade/views.py" />
         <option value="$PROJECT_DIR$/drf_shop/urls.py" />
         <option value="$PROJECT_DIR$/apps/trade/models.py" />
+        <option value="$PROJECT_DIR$/apps/trade/views.py" />
         <option value="$PROJECT_DIR$/apps/trade/serializers.py" />
       </list>
     </option>
@@ -1347,6 +1374,12 @@
               <item name="drf_shop" type="b2602c69:ProjectViewProjectNode" />
               <item name="drf_shop" type="462c0819:PsiDirectoryNode" />
               <item name="apps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="drf_shop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="drf_shop" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="user_operation" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1550,7 +1583,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1853" height="901" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49756098" visible="true" weight="0.12243767" />
       <window_info id="Structure" order="1" sideWeight="0.502439" side_tool="true" weight="0.12243767" />
@@ -1702,13 +1734,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
           <caret line="124" column="31" selection-start-line="124" selection-start-column="31" selection-end-line="124" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.virtualenvs/drf_shop/lib/python3.5/site-packages/rest_framework/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="295" column="16" lean-forward="true" selection-start-line="295" selection-start-column="16" selection-end-line="295" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1899,20 +1924,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/user_operation/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1408">
-          <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
-          <folding>
-            <element signature="e#152#190#0" expanded="true" />
-            <marker date="1548313686682" expanded="true" signature="453:560" ph="..." />
-            <marker date="1548313686682" expanded="true" signature="752:757" ph="..." />
-            <marker date="1548313686682" expanded="true" signature="1316:1322" ph="..." />
-            <marker date="1548313686682" expanded="true" signature="1736:1741" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/goods/filters.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -1957,19 +1968,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/user_operation/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="79" column="105" lean-forward="true" selection-start-line="78" selection-start-column="4" selection-end-line="79" selection-end-column="105" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <marker date="1548312688625" expanded="true" signature="722:1511" ph="..." />
-            <marker date="1548312688625" expanded="true" signature="1668:1673" ph="..." />
-            <marker date="1548312688625" expanded="true" signature="2133:2138" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/drf_shop/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -1990,24 +1988,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/trade/serializers.py">
+    <entry file="file://$PROJECT_DIR$/apps/user_operation/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="37" lean-forward="true" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
+        <state relative-caret-position="418">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
           <folding>
-            <element signature="e#152#190#0" expanded="true" />
-            <marker date="1548317983977" expanded="true" signature="311:316" ph="..." />
+            <element signature="e#0#35#0" expanded="true" />
+            <marker date="1548312688625" expanded="true" signature="722:1511" ph="..." />
+            <marker date="1548312688625" expanded="true" signature="1668:1673" ph="..." />
+            <marker date="1548312688625" expanded="true" signature="2133:2138" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/trade/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="45" lean-forward="true" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+        <state relative-caret-position="286">
+          <caret line="22" column="16" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1548315114147" expanded="true" signature="471:472" ph="..." />
+            <marker date="1548318871421" expanded="true" signature="501:502" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/drf_shop/lib/python3.5/site-packages/rest_framework/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="214" column="27" selection-start-line="214" selection-start-column="27" selection-end-line="214" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/user_operation/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="e#152#190#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/trade/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+          <folding>
+            <element signature="e#152#190#0" expanded="true" />
+            <marker date="1548319850548" expanded="true" signature="398:488" ph="..." />
+            <marker date="1548319850548" expanded="true" signature="541:546" ph="..." />
           </folding>
         </state>
       </provider>
