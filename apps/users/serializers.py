@@ -33,7 +33,7 @@ class SmsSerializer(serializers.Serializer):
         return mobile
 
 
-class UserDetailSerializers(serializers.ModelSerializer):
+class UserDetailSerializer(serializers.ModelSerializer):
     '''
     用户详情序列化类
     '''
@@ -43,7 +43,7 @@ class UserDetailSerializers(serializers.ModelSerializer):
         fields = ['name', 'gender', 'birthday', 'email', 'mobile']
 
 
-class RegisterSerializers(serializers.ModelSerializer):
+class UserRegSerializer(serializers.ModelSerializer):
     code = serializers.CharField(required=True, write_only=True, max_length=4, min_length=4, label="验证码",
                                  error_messages={
                                      "blank": "请输入验证码",

@@ -26,15 +26,16 @@ from rest_framework.documentation import include_docs_urls
 
 from goods.views import GoodsListViewSet, CategoryViewSet
 from users.views import SmsCodeViewset, UserRegisterViewSet
-from user_operation.views import UserFavViewSet
+from user_operation.views import UserFavViewSet, LeavingMessageViewSet, AddressViewSet
 
 router = DefaultRouter()
 router.register(r'^goods', GoodsListViewSet, base_name='goods')  # 商品列表
 router.register(r'^categorys', CategoryViewSet, base_name='categorys')  # 商品分类
 router.register(r'code', SmsCodeViewset, base_name='code')  # 短信验证码
 router.register(r'users', UserRegisterViewSet, base_name='users')  # 用户注册
-router.register(r'userfavs', UserFavViewSet, base_name='userfavs') # 用户收藏
-
+router.register(r'userfavs', UserFavViewSet, base_name='userfavs')  # 用户收藏
+router.register(r'messages', LeavingMessageViewSet, base_name='messages')  # 用户留言
+router.register(r'address', AddressViewSet, base_name='address')  # 收货地址
 
 urlpatterns = [
     url('xadmin/', xadmin.site.urls),

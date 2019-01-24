@@ -4,16 +4,17 @@ from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django_redis import get_redis_connection
 
-from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin
+from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework_jwt.serializers import jwt_payload_handler, jwt_encode_handler
 from rest_framework import status
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework.authentication import SessionAuthentication
+from rest_framework import permissions
 
 from random import choice
-from .serializers import SmsSerializer, RegisterSerializers, UserDetailSerializers
+from .serializers import SmsSerializer, UserRegSerializer, UserDetailSerializer
 from celery_tasks.tasks import send_sms_code
 from utils.permission import IsOwnerOrReadOnly
 
@@ -79,18 +80,31 @@ class SmsCodeViewset(CreateModelMixin, viewsets.GenericViewSet):
         return Response({"message": "ok"})
 
 
-class UserRegisterViewSet(CreateModelMixin, RetrieveModelMixin, viewsets.GenericViewSet):
-    serializer_class = RegisterSerializers
+class UserRegisterViewSet(CreateModelMixin, RetrieveModelMixin,UpdateModelMixin, viewsets.GenericViewSet):
+    serializer_class = UserRegSerializer
     queryset = User.objects.all()
-    permission_classes = (JSONWebTokenAuthentication, SessionAuthentication)
+    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
 
     def get_serializer_class(self):
+        '''
+        动态获取serializer
+        :return:
+        '''
         if self.action == 'retrieve':
-            return UserDetailSerializers
+            return UserDetailSerializer
         elif self.action == 'create':
-            return RegisterSerializers
-        else:
-            return UserDetailSerializers
+            return UserRegSerializer
+        return UserDetailSerializer
+
+    def get_permissions(self):
+        '''重写,动态获取'''
+        if self.action == 'retrieve':
+            # return [permissions.IsAuthenticated()]
+            return [IsOwnerOrReadOnly()]
+        elif self.action == 'create':
+            return []
+
+        return []
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -103,7 +117,7 @@ class UserRegisterViewSet(CreateModelMixin, RetrieveModelMixin, viewsets.Generic
         re_dict["name"] = user.name if user.name else user.username
 
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return Response(re_dict, status=status.HTTP_201_CREATED, headers=headers)
 
     def get_object(self):
         '''重写,　返回当前用户'''
@@ -111,12 +125,3 @@ class UserRegisterViewSet(CreateModelMixin, RetrieveModelMixin, viewsets.Generic
 
     def perform_create(self, serializer):
         return serializer.save()
-
-    def get_permissions(self):
-        '''重写'''
-        if self.action == 'retrieve':
-            return [IsOwnerOrReadOnly()]
-        elif self.action == 'create':
-            return []
-        else:
-            return []
